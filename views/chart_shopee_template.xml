@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="chart_shopee_template" name="Chart Shopee Stream">
+    <t t-call="web.layout">
+      <div class="container mt-4">
+        <div style="overflow-x: auto;">
+          <canvas id="chart_shopee_canvas" width="1600" height="600"></canvas>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          fetch("/gm/chart/shopee/data", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Requested-With": "XMLHttpRequest"
+            },
+            body: JSON.stringify({})
+          })
+          .then(res => res.json())
+          .then(data => {
+            const raw = data.result || [];
+            const weeks = raw.map(r => "Week " + r.week);
+
+            const fields = [
+              { key: "views", label: "Views", color: "#42a5f5" },
+              { key: "comment", label: "Komentar", color: "#ffb300" },
+              { key: "follow", label: "Follow", color: "#ab47bc" },
+              { key: "keranjang", label: "Keranjang", color: "#26a69a" },
+              { key: "pembelian", label: "Pembelian", color: "#78909c" }
+            ];
+
+            const datasets = fields.map(f => ({
+              label: f.label,
+              data: raw.map(r => r[f.key]),
+              backgroundColor: f.color
+            }));
+
+            new Chart(document.getElementById("chart_shopee_canvas"), {
+              type: "bar",
+              data: {
+                labels: weeks,
+                datasets: datasets
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: { position: "top" },
+                  title: {
+                    display: true,
+                    text: "Shopee Stream per Minggu"
+                  }
+                },
+                scales: {
+                  x: {
+                    ticks: {
+                      autoSkip: false,
+                      maxRotation: 45,
+                      minRotation: 45
+                    }
+                  }
+                }
+              }
+            });
+          });
+        });
+      </script>
+    </t>
+  </template>
+</odoo>
