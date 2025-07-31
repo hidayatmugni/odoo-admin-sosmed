@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <data>
+                <!-- Root Menu -->
+                <menuitem id="admin_work_menu_root"
+                        name="GM Sosmed Admin "
+                        sequence="10"
+                        groups="gm_sosmed_admin.group_gm_sosmed_admin_admin,gm_sosmed_admin.group_gm_sosmed_admin_user,gm_sosmed_admin.group_gm_sosmed_admin_view"
+                />
+
+                <!-- Submenu -->
+                <menuitem id="admin_Work_menu"
+                        name="Sosmed Admin"
+                        parent="admin_work_menu_root"
+                        action="action_admin_work_report"
+                        sequence="15"
+                        groups="gm_sosmed_admin.group_gm_sosmed_admin_admin,gm_sosmed_admin.group_gm_sosmed_admin_user,gm_sosmed_admin.group_gm_sosmed_admin_view"
+                />
+
+                <!-- ==== Menu Pivot -->
+                <menuitem id="menu_admin_work_report_pivot_group"
+                        name="Pivot Report"
+                        parent="admin_work_menu_root"
+                        sequence="50"
+                        groups="gm_sosmed_admin.group_gm_sosmed_admin_admin,gm_sosmed_admin.group_gm_sosmed_admin_user" />
+                <!-- === pivot Shopee -->
+                <menuitem id="menu_admin_work_report_pivot_shopee"
+                        name="Shopee Stream"
+                        parent="menu_admin_work_report_pivot_group"
+                        action="action_admin_work_report_pivot_shopee"
+                        sequence="51"
+                        groups="gm_sosmed_admin.group_gm_sosmed_admin_admin,gm_sosmed_admin.group_gm_sosmed_admin_user" />
+                <!-- === pivot Tiktok -->
+                <menuitem id="menu_admin_work_report_pivot_tiktok"
+                        name="TikTok Stream"
+                        parent="menu_admin_work_report_pivot_group"
+                        action="action_admin_work_report_pivot_tiktok"
+                        sequence="52"
+                        groups="gm_sosmed_admin.group_gm_sosmed_admin_admin,gm_sosmed_admin.group_gm_sosmed_admin_user" />
+                <!-- === pivot Video Report -->
+                <menuitem id="menu_admin_work_report_pivot_video"
+                        name="Video Sosmed"
+                        parent="menu_admin_work_report_pivot_group"
+                        action="action_admin_work_report_pivot_video"
+                        sequence="53"
+                        groups="gm_sosmed_admin.group_gm_sosmed_admin_admin,gm_sosmed_admin.group_gm_sosmed_admin_user" />
+
+
+                <!-- Chart -->
+                <menuitem id="menu_chart_root" name="Grafik Report" parent="admin_work_menu_root"
+                        sequence="50" />
+
+                <menuitem id="menu_chart_tiktok" name="TikTok Stream"
+                        parent="menu_chart_root"
+                        action="action_chart_tiktok"
+                        groups="gm_sosmed_admin.group_gm_sosmed_admin_admin,gm_sosmed_admin.group_gm_sosmed_admin_user" />
+
+                <menuitem id="menu_chart_shopee" name="Shopee Stream"
+                        parent="menu_chart_root"
+                        action="action_chart_shopee"
+                        groups="gm_sosmed_admin.group_gm_sosmed_admin_admin,gm_sosmed_admin.group_gm_sosmed_admin_user" />
+
+                <menuitem id="menu_chart_video" name="Video Sosmed"
+                        parent="menu_chart_root"
+                        action="action_chart_video"
+                        groups="gm_sosmed_admin.group_gm_sosmed_admin_admin,gm_sosmed_admin.group_gm_sosmed_admin_user" />
+
+        </data>
+
+</odoo>
