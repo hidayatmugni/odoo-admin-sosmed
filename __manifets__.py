@@ -7,7 +7,7 @@
     "description": """
 Admin Work Statistic and Report
     """,
-    "author": "Galeri Medika",
+    "author": "Mugni Hidayat",
     "website": "https://www.yourcompany.com",
     "category": "Sales",
     "version": "1.2",
