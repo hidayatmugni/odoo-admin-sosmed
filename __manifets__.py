@@ -15,6 +15,7 @@ Admin Work Statistic and Report
     "data": [
         # Security
         "security/admin_work_security.xml",
+        "security/ir_rules_security.xml,
         "security/ir.model.access.csv",
         # report
         "report/admin_work_templates.xml",
