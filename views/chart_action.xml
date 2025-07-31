@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_chart_tiktok" model="ir.actions.act_url">
+        <field name="name">TikTok Stream Chart</field>
+        <field name="url">/gm/chart/tiktok</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_chart_shopee" model="ir.actions.act_url">
+        <field name="name">Shopee Stream Chart</field>
+        <field name="url">/gm/chart/shopee</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_chart_video" model="ir.actions.act_url">
+        <field name="name">Video Sosmed Chart</field>
+        <field name="url">/gm/chart/video</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
