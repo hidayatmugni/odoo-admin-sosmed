@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- list View untuk One2many -->
+    <record id="view_product_knowledge_list" model="ir.ui.view">
+        <field name="name">product.knowledge.list</field>
+        <field name="model">product.knowledge</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="date" />
+                <field name="product_name" />
+                <field name="notes" />
+            </list>
+        </field>
+    </record>
+
+</odoo>
