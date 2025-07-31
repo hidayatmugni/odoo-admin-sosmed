@@ -1,0 +1,22 @@
+<odoo>
+    <!-- List View -->
+    <record id="view_content_report_stream_tiktok_list" model="ir.ui.view">
+        <field name="name">content.report.stream.tiktok.list</field>
+        <field name="model">content.report.stream.tiktok</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="date" />
+                <field name="jam" />
+                <field name="views" />
+                <field name="likes" />
+                <field name="durasi" />
+                <field name="comment" />
+                <field name="follow" />
+                <field name="pembelian" />
+                <field name="keranjang" />
+                <field name="notes" />
+            </list>
+        </field>
+    </record>
+
+</odoo>
