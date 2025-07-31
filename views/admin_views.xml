@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_admin_work_report" model="ir.actions.act_window">
+        <field name="name">Laporan Mingguan</field>
+        <field name="res_model">admin.work.report</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- pivot Shopee-->
+    <record id="view_admin_work_report_pivot_shopee" model="ir.ui.view">
+        <field name="name">Pivot Shopee Stream</field>
+        <field name="model">admin.work.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Laporan Shopee Stream">
+                <field name="name" type="row" />
+                <field name="date_from" type="col" />
+                <field name="total_views" type="measure" />
+                <field name="total_likes" type="measure" />
+                <field name="total_comments" type="measure" />
+                <field name="total_follow" type="measure" />
+                <field name="total_keranjang" type="measure" />
+                <field name="total_pembelian" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <!-- pivot  Tiktok-->
+    <record id="view_admin_work_report_pivot_tiktok" model="ir.ui.view">
+        <field name="name">Pivot Tiktok Stream</field>
+        <field name="model">admin.work.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Laporan Tiktok Stream">
+                <field name="name" type="row" />
+                <field name="date_from" type="col" />
+                <field name="total_views_tiktok" type="measure" />
+                <field name="total_likes_tiktok" type="measure" />
+                <field name="total_comments_tiktok" type="measure" />
+                <field name="total_follow_tiktok" type="measure" />
+                <field name="total_keranjang_tiktok" type="measure" />
+                <field name="total_pembelian_tiktok" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <!-- pivot Video Report-->
+    <record id="view_admin_work_report_pivot_video" model="ir.ui.view">
+        <field name="name">Pivot Video Sosmed</field>
+        <field name="model">admin.work.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Laporan Video Mingguan">
+                <field name="name" type="row" />
+                <field name="date_from" type="col" />
+                <field name="total_fb_views" type="measure" />
+                <field name="total_fb_likes" type="measure" />
+                <field name="total_ig_views" type="measure" />
+                <field name="total_ig_likes" type="measure" />
+                <field name="total_tt_views" type="measure" />
+                <field name="total_tt_likes" type="measure" />
+                <field name="total_yt_views" type="measure" />
+                <field name="total_yt_likes" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <!-- ===action shopee=== -->
+    <record id="action_admin_work_report_pivot_shopee" model="ir.actions.act_window">
+        <field name="name">Pivot: Shopee Stream</field>
+        <field name="res_model">admin.work.report</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="view_admin_work_report_pivot_shopee" />
+    </record>
+
+    <!-- ===action video=== -->
+    <record id="action_admin_work_report_pivot_video" model="ir.actions.act_window">
+        <field name="name">Pivot: Video Sosmed</field>
+        <field name="res_model">admin.work.report</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="view_admin_work_report_pivot_video" />
+    </record>
+
+    <!-- ===action Tiktok=== -->
+    <record id="action_admin_work_report_pivot_tiktok" model="ir.actions.act_window">
+        <field name="name">Pivot: Tiktok Stream</field>
+        <field name="res_model">admin.work.report</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="view_admin_work_report_pivot_tiktok" />
+    </record>
+
+    <!-- ==== view utama ==== -->
+    <record id="view_admin_work_report_form" model="ir.ui.view">
+        <field name="name">admin.work.report.form</field>
+        <field name="model">admin.work.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="copy_previous_week_plan"
+                        string="Copy Previous Week Plan"
+                        type="object"
+                        class="btn-primary"
+                        confirm="Apakah Anda yakin ingin menyalin Plan dari minggu sebelumnya?"
+                        modifiers='{"invisible": [["__id__", "=", false]]}' />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="" />
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <!-- <field name="name" string="Report Name "/> -->
+                            <field name="user_id" />
+                            <field name="comment" />
+                        </group>
+                        <group>
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <!-- Report Plan -->
+                        <page string="Plan">
+                            <notebook>
+                                <!-- Senin -->
+                                <page string="Monday">
+                                    <field name="monday_plan_ids" domain="[('day_name','=','mon')]"
+                                        context="{'default_day_name': 'mon'}" mode="list,form">
+                                        <list editable="bottom">
+                                            <field name="task" />
+                                            <field name="duration" />
+                                            <field name="notes" />
+                                            <field name="day_name" invisible="1" />
+                                            <field name="date" invisible="1" />
+                                        </list>
+
+                                    </field>
+                                    <group col="2">
+                                        <div style="text-align: right; width: 100%;">
+                                            <div class="o_form_label">Total Task Duration</div>
+                                            <field
+                                                name="total_duration_monday" readonly="1"
+                                                class="oe_inline" /> (Jam) </div>
+                                    </group>
+                                    <footer>
+                                        <button string="Remove" type="object" name="unlink"
+                                            class="btn btn-danger"
+                                            confirm="Are you sure you want to remove this entry?" />
+                                    </footer>
+                                </page>
+                                <!-- Tuesday -->
+                                <page string="Tuesday">
+                                    <field name="tuesday_plan_ids" domain="[('day_name','=','tue')]"
+                                        context="{'default_day_name': 'tue'}" mode="list,form">
+                                        <list editable="bottom">
+                                            <field name="task" />
+                                            <field name="duration" />
+                                            <field name="notes" />
+                                            <field name="day_name" invisible="1" />
+                                            <field name="date" invisible="1" />
+                                        </list>
+                                    </field>
+                                    <group col="2">
+                                        <div style="text-align: right; width: 100%;">
+                                            <div class="o_form_label">Total Task Duration</div>
+                                            <field
+                                                name="total_duration_tuesday" readonly="1"
+                                                class="oe_inline" /> (Jam) </div>
+                                    </group>
+                                </page>
+                                <!-- Wednesday -->
+                                <page string="Wednesday">
+                                    <field name="wednesday_plan_ids"
+                                        domain="[('day_name','=','wed')]"
+                                        context="{'default_day_name': 'wed'}" mode="list,form">
+                                        <list editable="bottom">
+                                            <field name="task" />
+                                            <field name="duration" />
+                                            <field name="notes" />
+                                            <field name="day_name" invisible="1" />
+                                            <field name="date" invisible="1" />
+                                        </list>
+                                    </field>
+                                    <group col="2">
+                                        <div style="text-align: right; width: 100%;">
+                                            <div class="o_form_label">Total Task Duration</div>
+                                            <field
+                                                name="total_duration_wednesday" readonly="1"
+                                                class="oe_inline" /> (Jam) </div>
+                                    </group>
+                                </page>
+                                <!-- Thursday -->
+                                <page string="Thursday">
+                                    <field name="thursday_plan_ids"
+                                        domain="[('day_name','=','thu')]"
+                                        context="{'default_day_name': 'thu'}" mode="list,form">
+                                        <list editable="bottom">
+                                            <field name="task" />
+                                            <field name="duration" />
+                                            <field name="notes" />
+                                            <field name="day_name" invisible="1" />
+                                            <field name="date" invisible="1" />
+                                        </list>
+                                    </field>
+                                    <group col="2">
+                                        <div style="text-align: right; width: 100%;">
+                                            <div class="o_form_label">Total Task Duration</div>
+                                                <field
+                                                name="total_duration_thursday" readonly="1"
+                                                class="oe_inline" /> (Jam) </div>
+                                    </group>
+                                </page>
+                                <!-- Friday -->
+                                <page string="Friday">
+                                    <field name="friday_plan_ids" domain="[('day_name','=','fri')]"
+                                        context="{'default_day_name': 'fri'}" mode="list,form">
+                                        <list editable="bottom">
+                                            <field name="task" />
+                                            <field name="duration" />
+                                            <field name="notes" />
+                                            <field name="day_name" invisible="1" />
+                                            <field name="date" invisible="1" />
+                                        </list>
+                                    </field>
+                                    <group col="2">
+                                        <div style="text-align: right; width: 100%;">
+                                            <div class="o_form_label">Total Task Duration</div>
+                                            <field
+                                                name="total_duration_friday" readonly="1"
+                                                class="oe_inline" /> (Jam) </div>
+                                    </group>
+                                </page>
+                                <!-- Saturday -->
+                                <page string="Saturday">
+                                    <field name="saturday_plan_ids"
+                                        domain="[('day_name','=','sat')]"
+                                        context="{'default_day_name': 'sat'}" mode="list,form">
+                                        <list editable="bottom">
+                                            <field name="task" />
+                                            <field name="duration" />
+                                            <field name="notes" />
+                                            <field name="day_name" invisible="1" />
+                                            <field name="date" invisible="1" />
+                                        </list>
+                                    </field>
+                                    <group col="2">
+                                        <div style="text-align: right; width: 100%;">
+                                            <div class="o_form_label">Total Task Duration</div>
+                                            <field
+                                                name="total_duration_saturday" readonly="1"
+                                                class="oe_inline" /> (Jam) </div>
+                                    </group>
+                                </page>
+                            </notebook>
+                            <!-- Comment plan -->
+                            <group>
+                                <field name="plan_comment" />
+                            </group>
+                        </page>
+                        <!-- Report Article & Video -->
+                        <page string="Article dan Video">
+                            <field name="article_video_ids" mode="list" />
+                            <group>
+                                <field name="article_comment" />
+                            </group>
+                        </page>
+
+                        <page string="Report Views">
+                            <!-- Report Views Video & Streaming -->
+                            <notebook>
+                                <page string="Live Stream">
+                                    <notebook>
+                                        <page string="Shopee">
+                                            <field name="shopee_stream_ids" mode="list,form" />
+                                        </page>
+                                        <page string="Tiktok">
+                                            <field name="tiktok_stream_ids" mode="list">
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </page>
+                                <page string="Video">
+                                    <field name="video_ids" mode="list" />
+                                </page>
+                            </notebook>
+                            <!-- Report Views Comment -->
+                            <group>
+                                <field name="report_views_comment" />
+                            </group>
+                        </page>
+
+
+                        <!-- Report Studied Product -->
+                        <page string="Studied Product">
+                            <field name="study_ids" mode="list" />
+                            <group>
+                                <field name="product_comment" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
