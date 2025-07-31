@@ -2,8 +2,8 @@
 # Programmer : Mugni
 
 {
-    "name": "GM Sosmed Admin",
-    "summary": "Sosmed Admin",
+    "name": "Admin Sosial Media",
+    "summary": "Tools Manage Report Sosial Media",
     "description": """
 Admin Work Statistic and Report
     """,
