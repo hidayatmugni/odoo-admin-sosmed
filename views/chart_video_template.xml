@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="chart_video_template" name="Chart Video Stream">
+    <t t-call="web.layout">
+      <div class="container mt-4">
+        <div style="overflow-x: auto;">
+          <canvas id="chart_video_canvas" width="2000" height="600"></canvas>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          fetch("/gm/chart/video/data", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Requested-With": "XMLHttpRequest"
+            },
+            body: JSON.stringify({})
+          })
+          .then(res => res.json())
+          .then(data => {
+            const raw = data.result || [];
+            const weeks = raw.map(r => "Week " + r.week);
+
+            const fields = [
+              {  key: "fb_views", label: "FB Views", color: "#3b5998" },
+              { key: "fb_likes", label: "FB Likes", color: "#8b9dc3" },
+              { key: "ig_views", label: "IG Views", color: "#C13584" },
+              { key: "ig_likes", label: "IG Likes", color: "#e1306c" },
+              { key: "tt_views", label: "TikTok Views", color: "#69C9D0" },
+              { key: "tt_likes", label: "TikTok Likes", color: "#010101" },
+              { key: "yt_views", label: "YouTube Views", color: "#FF0000" },
+              { key: "yt_likes", label: "YouTube Likes", color: "#c4302b" },
+            ];
+
+            const datasets = fields.map(f => ({
+              label: f.label,
+              data: raw.map(r => r[f.key]),
+              backgroundColor: f.color
+            }));
+            <!-- const datasets = fields.map(f => ({
+                label: f.label,
+                data: raw.map(r => r[f.key]),
+                backgroundColor: f.color
+            })); -->
+
+            new Chart(document.getElementById("chart_video_canvas"), {
+              type: "bar",
+              data: {
+                labels: weeks,
+                datasets: datasets
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: { position: "top" },
+                  title: {
+                    display: true,
+                    text: "Grafik Video Sosmed per Minggu"
+                  }
+                },
+                scales: {
+                  x: {
+                    ticks: {
+                      autoSkip: false,
+                      maxRotation: 45,
+                      minRotation: 45
+                    }
+                  }
+                }
+              }
+            });
+          });
+        });
+      </script>
+    </t>
+  </template>
+</odoo>
