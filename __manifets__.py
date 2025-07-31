@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Programmer : Mugni
-
+# ============= Programmer : Mugni ================
 {
     "name": "Admin Sosial Media",
     "summary": "Tools Manage Report Sosial Media",
