@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Create kategori sendiri -->
+        <record id="module_category_sosmed_admin" model="ir.module.category">
+            <field name="name">Sosial Media Administration</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- ================= ADMIN GROUP ================= -->
+        <record id="group_gm_sosmed_admin_admin" model="res.groups">
+            <field name="name">Sosmed Administration Admin</field>
+            <field name="category_id" ref="gm_sosmed_admin.module_category_sosmed_admin"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- ================= User GROUP ================= -->
+        <record id="group_gm_sosmed_admin_user" model="res.groups">
+            <field name="name">Sosmed Administration User</field>
+            <field name="category_id" ref="gm_sosmed_admin.module_category_sosmed_admin"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- ================= Views GROUP ================= -->
+        <record id="group_gm_sosmed_admin_view" model="res.groups">
+            <field name="name">Sosmed Administration View Only</field>
+            <field name="category_id" ref="gm_sosmed_admin.module_category_sosmed_admin"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>
