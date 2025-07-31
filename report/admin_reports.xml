@@ -1,0 +1,11 @@
+<odoo>
+    <record id="action_report_admin_work_bind" model="ir.actions.report">
+        <field name="name">Cetak Laporan Mingguan</field>
+        <field name="model">admin.work.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="binding_model_id" ref="gm_sosmed_admin.model_admin_work_report"/>
+        <field name="binding_type">report</field>
+        <field name="report_name">gm_sosmed_admin.report_admin_work_template</field>
+    </record>
+    
+</odoo>
