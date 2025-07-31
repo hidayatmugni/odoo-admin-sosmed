@@ -1,0 +1,23 @@
+<odoo>
+    <!-- List View -->
+    <record id="view_content_report_video_list" model="ir.ui.view">
+        <field name="name">article.video.report.list</field>
+        <field name="model">article.video.report</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="date" />
+                <!-- article -->
+                <field name="article_title" />
+                <field name="article_content" />
+                <field name="article_action" />
+                <!-- video -->
+                <field name="video_type" />
+                <field name="video_title" />
+                <field name="video_content" />
+                <field name="video_action" />
+                <!-- checklis -->
+                <field name="notes" />
+            </list>
+        </field>
+    </record>
+</odoo>
