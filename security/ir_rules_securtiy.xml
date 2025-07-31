@@ -1,0 +1,28 @@
+<odoo>
+    <!-- Rule untuk user biasa: hanya bisa lihat data sendiri -->
+    <record id="rule_admin_work_report_user_own_data" model="ir.rule">
+        <field name="name">User - Lihat Laporan Sendiri</field>
+        <field name="model_id" ref="gm_sosmed_admin.model_admin_work_report"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[
+            (4, ref('gm_sosmed_admin.group_gm_sosmed_admin_user')),
+            (4, ref('gm_sosmed_admin.group_gm_sosmed_admin_view'))
+        ]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!-- Rule untuk admin: bisa akses semua -->
+    <record id="rule_admin_work_report_admin_all_data" model="ir.rule">
+        <field name="name">Admin - Semua Laporan</field>
+        <field name="model_id" ref="gm_sosmed_admin.model_admin_work_report"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('gm_sosmed_admin.group_gm_sosmed_admin_admin'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>
