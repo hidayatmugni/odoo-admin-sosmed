@@ -1,0 +1,44 @@
+<odoo>
+    <!-- List View -->
+    <record id="view_content_report_stream_shopee_list" model="ir.ui.view">
+        <field name="name">content.report.stream.shopee.list</field>
+        <field name="model">content.report.stream.shopee</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="date" />
+                <field name="jam" />
+                <field name="views" />
+                <field name="likes" />
+                <field name="durasi" />
+                <field name="comment" />
+                <field name="follow" />
+                <field name="pembelian" />
+                <field name="keranjang" />
+                <field name="notes" />
+
+            </list>
+        </field>
+    </record>
+
+    <record id="view_content_report_stream_shopee_form" model="ir.ui.view">
+        <field name="name">content.report.stream.shopee.form</field>
+        <field name="model">content.report.stream.shopee</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="date" />
+                    <field name="jam" />
+                    <field name="views" />
+                    <field name="likes" />
+                    <field name="durasi" />
+                    <field name="comment" />
+                    <field name="follow" />
+                    <field name="pembelian" />
+                    <field name="keranjang" />
+                    <field name="notes" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>
