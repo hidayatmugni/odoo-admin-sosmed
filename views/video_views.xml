@@ -1,0 +1,29 @@
+<odoo>
+    <!-- List View -->
+    <record id="view_article_video_list" model="ir.ui.view">
+        <field name="name">content.report.video.list</field>
+        <field name="model">content.report.video</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="date" />
+                <field name="jam_fb" />
+                <field name="fb_views" />
+                <field name="fb_likes" />
+
+                <field name="jam_ig" />
+                <field name="ig_views" />
+                <field name="ig_likes" />
+
+                <field name="jam_tt" />
+                <field name="tt_views" />
+                <field name="tt_likes" />
+
+                <field name="jam_yt" />
+                <field name="yt_views" />
+                <field name="yt_likes" />
+                <field name="notes" />
+            </list>
+        </field>
+    </record>
+
+</odoo>
